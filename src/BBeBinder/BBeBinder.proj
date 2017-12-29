@@ -1,0 +1,199 @@
+<Project DefaultTargets="test" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+  
+  <PropertyGroup>
+    <HelloWorldDir>test\data\eBooks\HelloWorld</HelloWorldDir>
+    <AdvShHolmesDir>test\data\eBooks\AdvSherlockHolmes</AdvShHolmesDir>
+
+    <BBeBookDir>C:\chris\src\BBeBinder\BBeBook-0.1</BBeBookDir>
+    <Jars>\Documents and Settings\Chris Mumford\Desktop\Sony Reader\JARs</Jars>
+    <CLASSPATH>$(Jars)\jpedalSTD.jar;$(Jars)\PDFBox-0.7.3.jar;$(Jars)\kxml2-2.3.0.jar;$(BBeBookDir)</CLASSPATH>
+  </PropertyGroup>
+
+  <Target Name="update-versions">
+    <Version VersionFile="Version.txt" RevisionType="NonIncrement">
+      <Output TaskParameter="Major" PropertyName="Major" />
+      <Output TaskParameter="Minor" PropertyName="Minor" />
+      <Output TaskParameter="Build" PropertyName="Build" />
+      <Output TaskParameter="Revision" PropertyName="Revision" />
+    </Version>
+    <Message Text="Version: $(Major).$(Minor).$(Build).$(Revision)"/>
+
+    <FileUpdate Files="src\BBeBinder\Properties\AssemblyInfo.cs"
+                Regex='AssemblyVersion[^)]+'
+                ReplacementText='AssemblyVersion("$(Major).$(Minor).$(Build).$(Revision)"'
+                Singleline='true' />
+
+    <FileUpdate Files="src\BBeBinder\Properties\AssemblyInfo.cs"
+                Regex='AssemblyFileVersion[^)]+'
+                ReplacementText='AssemblyFileVersion("$(Major).$(Minor).$(Build).$(Revision)"'
+                Singleline='true' />
+
+    <FileUpdate Files="src\BBeBLib\Properties\AssemblyInfo.cs"
+                Regex='AssemblyVersion[^)]+'
+                ReplacementText='AssemblyVersion("$(Major).$(Minor).$(Build).$(Revision)"'
+                Singleline='true' />
+
+    <FileUpdate Files="src\BBeBLib\Properties\AssemblyInfo.cs"
+                Regex='AssemblyFileVersion[^)]+'
+                ReplacementText='AssemblyFileVersion("$(Major).$(Minor).$(Build).$(Revision)"'
+                Singleline='true' />
+
+    <FileUpdate Files="src\GutenbergLib\Properties\AssemblyInfo.cs"
+                Regex='AssemblyVersion[^)]+'
+                ReplacementText='AssemblyVersion("$(Major).$(Minor).$(Build).$(Revision)"'
+                Singleline='true' />
+
+    <FileUpdate Files="src\GutenbergLib\Properties\AssemblyInfo.cs"
+                Regex='AssemblyFileVersion[^)]+'
+                ReplacementText='AssemblyFileVersion("$(Major).$(Minor).$(Build).$(Revision)"'
+                Singleline='true' />
+
+    <FileUpdate Files="src\makebbeb\Properties\AssemblyInfo.cs"
+                Regex='AssemblyVersion[^)]+'
+                ReplacementText='AssemblyVersion("$(Major).$(Minor).$(Build).$(Revision)"'
+                Singleline='true' />
+
+    <FileUpdate Files="src\makebbeb\Properties\AssemblyInfo.cs"
+                Regex='AssemblyFileVersion[^)]+'
+                ReplacementText='AssemblyFileVersion("$(Major).$(Minor).$(Build).$(Revision)"'
+                Singleline='true' />
+
+    <FileUpdate Files="src\BBeBinderSetup\BBeBinderSetup.vdproj"
+                Regex='GutenbergLib, Version=[^,]+'
+                ReplacementText='GutenbergLib, Version=$(Major).$(Minor).$(Build).$(Revision)'
+                Singleline='true' />
+
+    <FileUpdate Files="src\BBeBinderSetup\BBeBinderSetup.vdproj"
+                Regex='BBeBLib, Version=[^,]+'
+                ReplacementText='BBeBLib, Version=$(Major).$(Minor).$(Build).$(Revision)'
+                Singleline='true' />
+
+  </Target>
+
+  <Target Name="compile">
+    <MSBuild Projects="src\BBeBinder.sln" Properties="Configuration=Debug" />
+    <MSBuild Projects="src\BBeBinder.sln" Properties="Configuration=Release" />
+  </Target>
+
+  <!-- Some books processed by BBeBook (for comparison only) -->
+  <Target Name="books">
+    <Exec Command='java -cp "$(CLASSPATH)" BBeBook advsh12_htm.xml' WorkingDirectory='$(AdvShHolmesDir)' />
+    <Exec Command='java -cp "$(CLASSPATH)" BBeBook advtxt.xml' WorkingDirectory='$(AdvShHolmesDir)' />
+  </Target>
+
+  <Target Name="lrs">
+    <Exec Command="lrs2lrf.exe styles.lrs styles.lrf" WorkingDirectory="test\data\eBooks\Style" />
+  </Target>
+
+  <!-- Run GutenMark (http://www.sandroid.org/GutenMark/) on a few files. -->
+  <Target Name="mark">
+    <Exec Command='GutenMark.exe ..\..\test\data\eBooks\MobyDick\moby10b.txt ..\..\test\data\eBooks\MobyDick\moby10b.html'
+          WorkingDirectory='3rdparty\GutenMark' />
+    <Exec Command='GutenMark.exe ..\..\test\data\eBooks\Dido\16169-8.txt ..\..\test\data\eBooks\Dido\16169-8.html'
+          WorkingDirectory='3rdparty\GutenMark' />
+  </Target>
+
+
+  <Target Name="test" DependsOnTargets="compile">
+
+    <Message Text="Running tests..." />
+
+    <!-- Create a hello world book. -->
+    <Exec Command="..\..\..\..\src\makebbeb\bin\Debug\makebbeb.exe HelloWorld.xml" WorkingDirectory="$(HelloWorldDir)" />
+
+    <!-- Now compare the newly created document against the golden master. -->
+    <Exec Command="diff $(HelloWorldDir)\GoldenMaster.lrf $(HelloWorldDir)\HelloWorld.lrf" />
+
+    <!-- Process The Adventures of Sherlock Holmes. -->
+    <Exec Command="..\..\..\..\src\makebbeb\bin\Debug\makebbeb.exe advsh12.xml" WorkingDirectory="$(AdvShHolmesDir)" />
+
+    <!-- Now compare the newly created document against the golden master. -->
+    <Exec Command="diff $(AdvShHolmesDir)\GoldenMaster.lrf $(AdvShHolmesDir)\advsh12.lrf" />
+  </Target>
+
+  <!-- Decompile all books from the Sony Reader CD. -->
+  <Target Name="decomp-cd-books">
+    <CreateItem Include="test\data\eBooks\ReaderCD\*.lrf">
+      <Output TaskParameter="Include" ItemName="ReaderCdFiles"/>
+    </CreateItem>
+    <Exec Command="src\lrfdecomp\bin\Debug\lrfdecomp.exe @(ReaderCdFiles, ' ')" />
+  </Target>
+
+  <!-- Decompile Complex.lrf -->
+  <Target Name="dcomplex">
+    <Exec Command="src\lrfdecomp\bin\Debug\lrfdecomp.exe test\data\eBooks\Complex\Complex.lrf" />
+  </Target>
+  
+  <Target Name="zip">
+    
+    <CreateItem Include="src\BBeBinderSetup\Release\BBeBinderSetup.msi;
+      src\BBeBinderSetup\Release\setup.exe;
+      README.htm;
+      \Program Files\Common Files\Merge Modules\vs_piaredist.exe">
+      <Output TaskParameter="Include" ItemName="ZipFiles"/>
+    </CreateItem>
+
+    <Version VersionFile="Version.txt" RevisionType="NonIncrement">
+      <Output TaskParameter="Major" PropertyName="Major" />
+      <Output TaskParameter="Minor" PropertyName="Minor" />
+      <Output TaskParameter="Build" PropertyName="Build" />
+      <Output TaskParameter="Revision" PropertyName="Revision" />
+    </Version>
+    <Message Text="Version: $(Major).$(Minor).$(Build).$(Revision)"/>
+    
+    <Zip Files="@(ZipFiles)" Flatten="true" 
+       ZipFileName="BBeBinder-$(Major).$(Minor).$(Build).$(Revision).zip"
+       Comment="The BBeB Binder program."/>
+  </Target>
+  
+  <Target Name="dist" DependsOnTargets="test;update-versions">
+
+    <RegistryRead
+      KeyName="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\8.0"
+      ValueName="InstallDir">
+      <Output TaskParameter="Value" PropertyName="InstallRoot" />
+    </RegistryRead>
+
+    <Exec Command='"$(InstallRoot)devenv.exe" src\BBeBinderSetup\BBeBinderSetup.sln /Build "Debug"' />
+    <Exec Command='"$(InstallRoot)devenv.exe" src\BBeBinderSetup\BBeBinderSetup.sln /Build "Release"' />
+    <CallTarget Targets="zip" />
+  </Target>
+
+  <!-- Decompile Complex.lrf into Complex.lrs using lrf2lrs. I don't have this app committed to 
+       our repository so you must manually put this in 3rdparty first. -->
+  <Target Name="complex-lrs">
+    <Exec WorkingDirectory="test\data\eBooks\Complex"
+          Command="..\..\..\..\3rdparty\lrf2lrs\lrf2lrs.py Complex.lrf" />
+  </Target>
+
+  <Target Name="complex-lrf">
+    <Exec WorkingDirectory="test\data\eBooks\Complex"
+          Command="..\..\..\..\3rdparty\lrs2lrf\lrs2lrf.exe Complex.lrs Complex.lrf" />
+  </Target>
+
+  <Target Name="clean-dev-files">
+    <CreateItem Include="test\data\eBooks\ReaderCD\*.jpg;
+                test\data\eBooks\ReaderCD\*.html;
+                test\data\eBooks\ReaderCD\*.log;
+                test\data\eBooks\ReaderCD\*.lrs">
+      <Output TaskParameter="Include" ItemName="CdFiles"/>
+    </CreateItem>
+    <Delete Files="@(CdFiles)" />
+
+  </Target>
+  
+  <Target Name="clean">
+
+    <MSBuild Projects="src\BBeBinder.sln" Properties="Configuration=Debug" Targets="Clean" />
+    <MSBuild Projects="src\BBeBinder.sln" Properties="Configuration=Release" Targets="Clean" />
+
+    <CreateItem Include="**\*.lrf;**\*.suo;**\Debug\**;**\Release\**;BBeBinder*.zip" Exclude="**\GoldenMaster.lrf">
+      <Output TaskParameter="Include" ItemName="IntFiles"/>
+    </CreateItem>
+    <Delete Files="@(IntFiles)" />
+
+    <Delete Files="BBeBinder.zip" />
+  </Target>
+</Project>

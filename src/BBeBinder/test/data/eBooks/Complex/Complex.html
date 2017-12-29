@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>BBeB Binder Test Document</title>
+    <link rel="stylesheet" type="text/css" href="Complex.css" />
+    <meta name="author" content="Chris Mumford" />
+    <meta name="publisher" content="The BBeB Binder Project" />
+    <meta name="content-language" content="en" />
+</head>
+<body>
+    <h1 style="text-align: center">
+        BBeB Binder Test Document</h1>
+    <h2>
+        <a name="intro"></a>Simple Style Examples</h2>
+    <p>
+        This is a test document with various text styles in it that I use for testing conversion
+        to the Sony eBook reader.</p>
+    <h3>
+        Fonts</h3>
+    <p>
+        <span style="font-family: Times New Roman">This is "Times New Roman"<br />
+        </span><span style="font-family: Arial">This is "Arial"<br />
+        </span><span style="font-family: Courier New">This is "Courier New"</span></p>
+    <h4>
+        Font Sizes</h4>
+    <p>
+        <font size="-1">This is one size smaller.<br />
+        </font><font size="+1">This is one size larger.<br />
+        </font><span style="font-size: 8pt">This is 8pt.<br />
+        </span><span style="font-size: 16pt">This is 16pt.</span></p>
+    <h3>
+        Bold &amp; Strong</h3>
+    <p>
+        This is <strong>strong</strong> text.<br />
+        This is <b>bold</b> text.</p>
+    <h3>
+        Emphasis &amp; Italic</h3>
+    <p>
+        This is <em>emphasis</em> text.<br />
+        This is <i>italic</i> text.</p>
+    <h3>
+        Misc Text Styles</h3>
+    <p>
+        This is <b><i>bolditalic</i></b> text.<br />
+        This is <u>underlined</u> text.</p>
+    <h2>
+        Justifications</h2>
+    <h3>
+        Centered Text</h3>
+    <p>
+        The next line is centered with a paragraph style:</p>
+    <p style="text-align: center">
+        This is centered</p>
+    <p>
+        And this text with the &lt;center&gt; tag:</p>
+    <center>
+        This is centered</center>
+    <h3>
+        Right Justified Text</h3>
+    <p>
+        This is some left justified text:</p>
+    <p style="text-align: right">
+        “At the same time,” he remarked after a pause, during which he had sat puffing at
+        his long pipe and gazing down into the fire, “you can hardly be open to a charge
+        of sensationalism, for out of these cases which you have been so kind as to interest
+        yourself in, a fair proportion do not treat of crime, in its legal sense, at all.
+        The small matter in which I endeavoured to help the King of Bohemia, the singular
+        experience of Miss Mary Sutherland, the problem connected with the man with the
+        twisted lip, and the incident of the noble bachelor, were all matters which are
+        outside the pale of the law. But in avoiding the sensational, I fear that you may
+        have bordered on the trivial.”</p>
+    <h3>
+        Fully Justified Text</h3>
+    <p>
+        This is some fully justified text:</p>
+    <p style="text-align: justify">
+        “At the same time,” he remarked after a pause, during which he had sat puffing at
+        his long pipe and gazing down into the fire, “you can hardly be open to a charge
+        of sensationalism, for out of these cases which you have been so kind as to interest
+        yourself in, a fair proportion do not treat of crime, in its legal sense, at all.
+        The small matter in which I endeavoured to help the King of Bohemia, the singular
+        experience of Miss Mary Sutherland, the problem connected with the man with the
+        twisted lip, and the incident of the noble bachelor, were all matters which are
+        outside the pale of the law. But in avoiding the sensational, I fear that you may
+        have bordered on the trivial.”</p>
+    <h3>
+        Block Quote</h3>
+    <p>
+        Left Margin</p>
+    <blockquote>
+        This is block quoted text that should be indented a little bit from the left side
+        of the page. Usually this is about 0.5", but should probably be less on the Sony
+        reader.
+    </blockquote>
+    <p>
+        Again on the left margin.</p>
+    <h2>
+        Hyperlinks</h2>
+    <p>
+        A link outside of this document to <a href="http://www.cnn.com">CNN</a>.<br />
+        A link below to the <a href="#LongChapter">long chapter</a>.<br />
+        A link above to the <a href="#intro">introduction</a>.</p>
+    <h2>
+        Lists</h2>
+    <h3>
+        Ordered List</h3>
+    <ol>
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+        <li>four</li>
+    </ol>
+    <h3>
+        Unordered List</h3>
+    <ul>
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+        <li>four</li>
+    </ul>
+    <h3>
+        Multi-level Lists</h3>
+    <ul>
+        <li>one</li>
+        <li>two
+            <ul>
+                <li>un</li>
+                <li>deux</li>
+                <li>trois<ul>
+                    <li>uno</li>
+                    <li>dos</li>
+                </ul>
+                </li>
+                <li>quatre</li>
+            </ul>
+        </li>
+        <li>three</li>
+    </ul>
+    <h2>
+        Characters and Styles</h2>
+    <h3>
+        HTML characters or styles mapped to characters or styles:</h3>
+    <blockquote>
+        Trademark: &trade;<br />
+        Copyright: &copy;<br />
+        Registered: &reg;<br />
+        Superscript: e=mc<sup>2</sup><br />
+        Subscript: log<sub>10</sub>(x)</blockquote>
+    <h3>
+        Characters from ASCII 127 < x < ASCII 256</h3>
+    <blockquote>
+        "Ég sleppi þér aldrei" by Jóhann Jóhannsson."<br />
+        Here are some “double smart quotes”.<br />
+        Here are some ‘single smart quotes’.</blockquote>
+    <h3>
+        Character mapping</h3>
+    <p>
+        The reader contains three fonts: Swis721, Dutch801, and Courier10. The don't contain
+        all of the characters that other Windows fonts do. For these characters we substitute
+        them with the best equivalent.</p>
+    <blockquote>
+        Latin small letter 'a' with breve: &#259;.</blockquote>
+    <h2>
+        Tables</h2>
+    <p>
+        Here is a centered 3x3 table with a 1 pixel border:</p>
+    <table align="center" border="1" cellspacing="0" cellpadding="3">
+        <tr>
+            <th>
+                Column A</th>
+            <th>
+                Column B</th>
+            <th>
+                Column C</th>
+        </tr>
+        <tr>
+            <td align="center">
+                A1</td>
+            <td align="center">
+                B1</td>
+            <td align="center">
+                C1</td>
+        </tr>
+        <tr>
+            <td align="center">
+                A2</td>
+            <td align="center">
+                B2</td>
+            <td align="center">
+                C2</td>
+        </tr>
+        <tr>
+            <td align="center">
+                A3</td>
+            <td align="center">
+                B3</td>
+            <td align="center">
+                C3</td>
+        </tr>
+    </table>
+    <h2>
+        Lines</h2>
+    <p>
+        A horizontal line follows:</p>
+    <hr />
+    <p>
+        Here's one that is 50% the width of the page (left justified):</p>
+    <hr width="50%" align="left" />
+    <h2>
+        Images</h2>
+    <p>
+        This is a 400x300 full color JPEG image that is centered (with 1 pixel border):</p>
+    <p>
+    </p>
+    <center>
+        <img src="WineBarrels.jpg" alt="to the barrels..." border="1" /><br />
+        "to the barrels..." by Jyothi Karthik Raja</center>
+    <p>
+        This is a 400x300 256 color GIF image that is centered (with 3 pixel border):</p>
+    <p style="text-align: center">
+        <img src="Beach.gif" alt="Hiding from the beach" border="3" /><br />
+        "Hiding from the beach" by Jyothi Karthik Raja
+    </p>
+    <p>
+        This is a 290x249 2 color GIF image that is centered (without a border):</p>
+    <p style="text-align: center">
+        <img src="JackAndDaddy.gif" alt="Jack and Daddy" border="0" /><br />
+        "Jack and Daddy" by Jack Mumford
+    </p>
+    <h2>
+        Preformatted Text</h2>
+    <pre>Copyright laws are changing all over the world. Be sure to check the
+copyright laws for your country before downloading or redistributing
+this or any other Project Gutenberg eBook.
+
+This header should be the first thing seen when viewing this Project
+Gutenberg file.  Please do not remove it.  Do not change or edit the
+header without written permission.
+
+Please read the "legal small print," and other information about the
+eBook and Project Gutenberg at the bottom of this file.  Included is
+important information about your specific rights and restrictions in
+how the file may be used.  You can also find out about how to make a
+donation to Project Gutenberg, and how to get involved.
+
+
+**Welcome To The World of Free Plain Vanilla Electronic Texts**
+
+**eBooks Readable By Both Humans and By Computers, Since 1971**
+
+*****These eBooks Were Prepared By Thousands of Volunteers!*****
+
+
+Title: The Adventures of Sherlock Holmes
+
+Author: Sir Arthur Conan Doyle
+
+Release Date: March, 1999  [EBook #1661]
+[Most recently updated: November 29, 2002]
+
+Edition: 12
+
+Language: English
+
+Character set encoding: ASCII
+
+*** START OF THE PROJECT GUTENBERG EBOOK, THE ADVENTURES OF SHERLOCK HOLMES ***
+
+
+
+
+(Additional editing by Jose Menendez)</pre>
+    <h2>
+        Long Chapter</h2>
+    <p>
+        <a name="LongChapter"></a><font size="+2">&#8220;T</font>o the man who loves art
+        for its own sake,&#8221; remarked Sherlock Holmes, tossing aside the advertisement
+        sheet of the <i>Daily Telegraph</i>, &#8220;it is frequently in its least important
+        and lowliest manifestations that the keenest pleasure is to be derived. It is pleasant
+        to me to observe, Watson, that you have so far grasped this truth that in these
+        little records of our cases which you have been good enough to draw up, and, I am
+        bound to say, occasionally to embellish, you have given prominence not so much to
+        the many <i>causes célèbres</i> and sensational trials in which I have figured but
+        rather to those incidents which may have been trivial in themselves, but which have
+        given room for those faculties of deduction and of logical synthesis which I have
+        made my special province.&#8221;
+    </p>
+    <p>
+        &#8220;And yet,&#8221; said I, smiling, &#8220;I cannot quite hold myself absolved
+        from the charge of sensationalism which has been urged against my records.&#8221;
+    </p>
+    <p>
+        &#8220;You have erred, perhaps,&#8221; he observed, taking up a glowing cinder with
+        the tongs and lighting with it the long cherry-wood pipe which was wont to replace
+        his clay when he was in a disputatious rather than a meditative mood&#8212;&#8220;you
+        have erred perhaps in attempting to put colour and life into each of your statements
+        instead of confining yourself to the task of placing upon record that severe reasoning
+        from cause to effect which is really the only notable feature about the thing.&#8221;
+    </p>
+    <p>
+        &#8220;It seems to me that I have done you full justice in the matter,&#8221; I
+        remarked with some coldness, for I was repelled by the egotism which I had more
+        than once observed to be a strong factor in my friend&#8217;s singular character.</p>
+    <p>
+        &#8220;No, it is not selfishness or conceit,&#8221; said he, answering, as was his
+        wont, my thoughts rather than my words. &#8220;If I claim full justice for my art,
+        it is because it is an impersonal thing&#8212;a thing beyond myself. Crime is common.
+        Logic is rare. Therefore it is upon the logic rather than upon the crime that you
+        should dwell. You have degraded what should have been a course of lectures into
+        a series of tales.&#8221;</p>
+    <p>
+        It was a cold morning of the early spring, and we sat after breakfast on either
+        side of a cheery fire in the old room at Baker Street. A thick fog rolled down between
+        the lines of dun-coloured houses, and the opposing windows loomed like dark, shapeless
+        blurs through the heavy yellow wreaths. Our gas was lit and shone on the white cloth
+        and glimmer of china and metal, for the table had not been cleared yet. Sherlock
+        Holmes had been silent all the morning, dipping continuously into the advertisement
+        columns of a succession of papers until at last, having apparently given up his
+        search, he had emerged in no very sweet temper to lecture me upon my literary shortcomings.
+    </p>
+    <p>
+        &#8220;At the same time,&#8221; he remarked after a pause, during which he had sat
+        puffing at his long pipe and gazing down into the fire, &#8220;you can hardly be
+        open to a charge of sensationalism, for out of these cases which you have been so
+        kind as to interest yourself in, a fair proportion do not treat of crime, in its
+        legal sense, at all. The small matter in which I endeavoured to help the King of
+        Bohemia, the singular experience of Miss Mary Sutherland, the problem connected
+        with the man with the twisted lip, and the incident of the noble bachelor, were
+        all matters which are outside the pale of the law. But in avoiding the sensational,
+        I fear that you may have bordered on the trivial.&#8221;</p>
+</body>
+</html>

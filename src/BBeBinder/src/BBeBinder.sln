@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BBeBLib", "BBeBLib\BBeBLib.csproj", "{9DA9D58C-E89D-4934-82FA-9891C3FAC46F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "makebbeb", "makebbeb\makebbeb.csproj", "{C76DEAB0-67DB-4EA6-A08F-D720FFE7746B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9DA9D58C-E89D-4934-82FA-9891C3FAC46F} = {9DA9D58C-E89D-4934-82FA-9891C3FAC46F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BBeBinder", "BBeBinder\BBeBinder.csproj", "{0E452E0B-3C02-4CEF-ABCB-1147F0BA3111}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9DA9D58C-E89D-4934-82FA-9891C3FAC46F} = {9DA9D58C-E89D-4934-82FA-9891C3FAC46F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GutenbergLib", "GutenbergLib\GutenbergLib.csproj", "{B2E33F9C-2480-42D7-BF66-F2E22BD08924}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lrfdecomp", "lrfdecomp\lrfdecomp.csproj", "{3CB6EB15-F633-463A-90D8-143FBE63DD51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BBeBinderPluginInterface", "BBeBinderPluginInterface\BBeBinderPluginInterface.csproj", "{B7E49339-F245-4ACD-9667-8B695277C3C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BBeBinderPlugins", "BBeBinderPlugins\BBeBinderPlugins.csproj", "{B0C164A9-84C9-4A4D-B741-7B99833C727C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DA9D58C-E89D-4934-82FA-9891C3FAC46F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DA9D58C-E89D-4934-82FA-9891C3FAC46F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DA9D58C-E89D-4934-82FA-9891C3FAC46F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DA9D58C-E89D-4934-82FA-9891C3FAC46F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C76DEAB0-67DB-4EA6-A08F-D720FFE7746B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C76DEAB0-67DB-4EA6-A08F-D720FFE7746B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C76DEAB0-67DB-4EA6-A08F-D720FFE7746B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C76DEAB0-67DB-4EA6-A08F-D720FFE7746B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E452E0B-3C02-4CEF-ABCB-1147F0BA3111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E452E0B-3C02-4CEF-ABCB-1147F0BA3111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E452E0B-3C02-4CEF-ABCB-1147F0BA3111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E452E0B-3C02-4CEF-ABCB-1147F0BA3111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E33F9C-2480-42D7-BF66-F2E22BD08924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E33F9C-2480-42D7-BF66-F2E22BD08924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E33F9C-2480-42D7-BF66-F2E22BD08924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E33F9C-2480-42D7-BF66-F2E22BD08924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CB6EB15-F633-463A-90D8-143FBE63DD51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CB6EB15-F633-463A-90D8-143FBE63DD51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CB6EB15-F633-463A-90D8-143FBE63DD51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CB6EB15-F633-463A-90D8-143FBE63DD51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7E49339-F245-4ACD-9667-8B695277C3C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E49339-F245-4ACD-9667-8B695277C3C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E49339-F245-4ACD-9667-8B695277C3C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E49339-F245-4ACD-9667-8B695277C3C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0C164A9-84C9-4A4D-B741-7B99833C727C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0C164A9-84C9-4A4D-B741-7B99833C727C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0C164A9-84C9-4A4D-B741-7B99833C727C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0C164A9-84C9-4A4D-B741-7B99833C727C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

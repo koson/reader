@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>BBeB Binder Chapters</title>
+    <link href="../../main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <h1 style="text-align: center">
+        BBeB Binder<br />
+        Chapter Design<br />
+        and<br />
+        Table of Contents</h1>
+    <h2>
+        Abstract</h2>
+    <p>
+        This document describes the process by which BBeB Binder creates chapters in the
+        eBooks that it creates.</p>
+    <h2>
+        Overview</h2>
+    <p>
+        BBeB Binder will automatically create chapters in the BBeB eBooks that it creates.
+        BBeB Binder uses the HTML DOM as the common interchange data format. This means
+        that all of the file import plugins create an HTML stream, which is in turn loaded
+        into a MSHTML control (i.e. WebBrowser). The WebBrowser's HTML DOM is then traversed
+        to create the BBeB file. What this means is that the HTML-&gt;BBeB conversion process
+        only has the information in the DOM at its disposal.</p>
+    <h2>
+        Chapter Creation</h2>
+    <p>
+        Creating chapters must be easy - ideally it will be automatic. BBeB Binder will
+        automatically convert the heading HTML styles (i.e. H1, H2, H3, ... H6) to chapters.
+        It won't convert all six heading styles because this will usually product more chapters
+        than the user generally wants. There are two patterns that I have noticed in most
+        novels, I'll call them: book/part/chapter and book/chapter.</p>
+    <p>
+        book/part/chapter is where a book is first divided into two or more parts (sometimes
+        these are called books), and these parts are in turn called chapters. In this case
+        we generally want to see both the parts and chapters start on new pages.</p>
+    <p>
+        book/chapter is what I would call the traditional book layout style with each chapter
+        starting on a new page.</p>
+    <p>
+        So let's examine an HTML document with this structure:</p>
+    <ul>
+        <li>One (h1)
+        <ul><li>alpha (h2)</li>
+            <li>bravo (h2)</li>
+            <ul><li>omega (h3)</li></ul>
+            <li>charlie (h2)</li>
+        </ul>
+        </li>
+        <li>Two (h1)
+        <ul><li>delta (h2)</li></ul>
+        </li>
+        <li>Three (h1)</li>
+        <li>Four (h1)</li>
+    </ul>
+    <p>
+        Using book/part/chapters the parts would be "One", "Two", "Three", and "Four", and
+        the chapters would be all the h2 level items. But let's say that it didn't make
+        sense to do it this way and instead the person doing the conversion really wants
+        book/chapter. They must have a way of specifying the layout style.</p>
+    <p>
+        Instead of trying to classify all of the different layout styles that books might
+        be laid out in we will provide a single control that allows the user to specify
+        what heading level will get new pages. The default will be H2 so H1 and H2 will
+        start on new pages, and H3 through H6 will not.</p>
+    <h3>
+        Special Heading</h3>
+    <p>
+        Many HTML documents use H1 for the document title, and then start at H2 for the
+        next heading style - using H2-H6 throughout the document. In fact <em>this</em>
+        document does exactly that. If we did consider the first H1 element then we would
+        likely not be producing the chapters that the user wants.</p>
+    <p>
+        Solution: The user needs to delete the H1 style at the start of the document.</p>
+    <h3>
+        Not starting at H1</h3>
+    <p>
+        Many authors don't understand CSS well, and because the default heading fonts are
+        so big they don't start with H1, or even H2's. Their HTML document is only populated
+        by H3's and higher.</p>
+    <p>
+        Solution: Scan the document for the lowest heading and default the chapter heading
+        filter to be one greater than the minimum found.</p>
+    <h2>
+        Chapter Formatting</h2>
+    <p>
+        In addition to starting a chapter on a new page it is definately more aesthetic
+        if it has some sort of style applied to it. Increasing the font size as in this
+        sample:</p>
+    <div align="center">
+        <img border="1" src="img/chapter-foundation.gif" alt="Second Foundation chapter heading" /><br />
+        Exerpt from Isaac Asimov's "Second Foundation"</div>
+        <p>Here's an example of a section that doesn't start a new chapter, but will still
+            be called out in some way. This would be an example of a H3 element where the chapter
+            filter was set to H2 (i.e. only H1's and H2's got a new page).</p>
+    <div align="center">
+        <img border="1" src="img/chapter-mideast.gif" alt="The Complete Guide to Middle East Conflict chapter heading" /><br />
+        Exerpt from Mitchell G. Bard's "The Complete Guide to Middle East Conflict"</div>
+        <p>Here's an even more complicated chapter beginning with lines, an image, and font
+            size/color specification:</p>
+    <div align="center">
+        <img border="1" src="img/chapter-restaurant.gif" alt="The Complete Guide to Middle East Conflict chapter heading" /><br />
+        Exerpt from Douglas Adam's "The Restaurant at the End of the Universe"</div>
+    <br />
+    The plan is to have a phased implementation of chapter formatting:<br />
+    <br />
+    <ol>
+        <li>Hard code a single formatting style into BBeB Binder.</li>
+        <li>Hard-code 2-3 formatting styles and allow the user to select different ones.</li>
+        <li>We could have a HTML file that is a template for the chapter start.</li>
+        <li>Move the formatting into plug-ins allowing the user to select their own.</li>
+    </ol>
+    <h2>
+        Table of Contents Creation</h2>
+    <p>
+        The table of contents is obviously closely related to document chapters. They can
+        often be a one-to-one mapping where each chapter has a TOC entry, and the only entries
+        in the TOC are chapters. Often the TOC is a bit more detailed allowing entries to
+        refer to what I'll call subchapters.</p>
+    <p>
+        The plan is to have a second setting for the TOC filter level. It will default to
+        one level greater than the chapter filter. So If the chapter filter defaults to
+        H2, then the TOC filter will default to H3. The TOC filter can be any value: less
+        than, greater than, or equal to the chapter filter.</p>
+    <h2>
+        Table of Contents Formatting</h2>
+    <p>
+        Like chapters, the table of contents formatting is important.</p>
+    <div align="center">
+        <img border="1" src="img/toc-foundation.gif" alt="Second Foundation chapter heading" /><br />
+        Exerpt from Isaac Asimov's "Second Foundation"</div>
+        <p>Here's another:</p>
+    <div align="center">
+        <img border="1" src="img/toc-mideast.gif" alt="The Complete Guide to Middle East Conflict chapter heading" /><br />
+        Exerpt from Mitchell G. Bard's "The Complete Guide to Middle East Conflict"</div>
+        <p>Here's another:</p>
+    <div align="center">
+        <img border="1" src="img/toc-restaurant.gif" alt="The Complete Guide to Middle East Conflict chapter heading" /><br />
+        Exerpt from Douglas Adam's "The Restaurant at the End of the Universe"</div>
+
+</body>
+</html>

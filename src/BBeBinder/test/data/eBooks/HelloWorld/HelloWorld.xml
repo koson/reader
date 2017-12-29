@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<BindingParams>
+  <IconFile>HelloWorld.gif</IconFile>
+  <InputFile>HelloWorld.txt</InputFile>
+  <OutputFile>HelloWorld.lrf</OutputFile>
+  <Info version="1.0" >
+    <BookInfo>
+      <Title>Hello World</Title>
+      <Author>Chris Mumford</Author>
+      <BookID>ISBN0765312786</BookID>
+      <Publisher>Mumford Publishing</Publisher>
+      <Label>My first eBook</Label>
+      <Category>Fiction</Category>
+      <Classification>Science Fiction</Classification>
+      <FreeText>This is my first BBeB document.</FreeText>
+    </BookInfo>
+    <DocInfo>
+      <Language>en</Language>
+      <Creator>Chris Mumford</Creator>
+      <CreationDate>2006-12-19</CreationDate>
+      <Producer>Legally Blind Book Binder 2.0.1</Producer>
+    </DocInfo>
+  </Info>
+</BindingParams>

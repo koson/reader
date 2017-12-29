@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>BBeB Binder Developer Notes</title>
+    <link href="main.css" rel="stylesheet" type="text/css" />    
+</head>
+<body onload="alternate('projTable')"> 
+
+    <script type="text/javascript">
+    function alternate(id){ 
+     if(document.getElementsByTagName){  
+       var table = document.getElementById(id);   
+       var rows = table.getElementsByTagName("tr");   
+       for(i = 0; i < rows.length; i++){           
+     //manipulate rows 
+         if(i % 2 == 0){ 
+           // rows[i].className = "even"; 
+         }else{ 
+           rows[i].className = "odd"; 
+         }       
+       } 
+     } 
+    }
+    </script>
+
+    <h1 style="text-align: center">
+        BBeB Binder Developer Notes</h1>
+    <h2>
+        Introduction</h2>
+    <p>
+        These notes will help those that want to compile this source code on their own.</p>
+    <h2>
+        BBeB Binder Projects</h2>
+    <table id="projTable">
+        <tr>
+            <th>
+                Project</th>
+            <th>
+                Description</th>
+        </tr>
+        <tr>
+            <td>
+                BBeBinder</td>
+            <td>
+                The main BBeB Binder GUI program project</td>
+        </tr>
+        <tr>
+            <td>
+                BBeBinderSetup</td>
+            <td>
+                The Visual Studio Deployment project that creates the setup (*.msi)</td>
+        </tr>
+        <tr>
+            <td>
+                BBeBLib</td>
+            <td>
+                A class assembly for creating and writing LRF files</td>
+        </tr>
+        <tr>
+            <td>
+                GutenbergLib</td>
+            <td>
+                A class assembly for reading in text files from <a href="http://www.gutenberg.org/wiki/Main_Page">
+                    Project Gutenberg</a></td>
+        </tr>
+        <tr>
+            <td>
+                lrfdecomp</td>
+            <td>
+                An LRF decompiler</td>
+        </tr>
+        <tr>
+            <td>
+                makebbeb</td>
+            <td>
+                A command-line program to create LRF files using BBeBLib</td>
+        </tr>
+    </table>
+    <p>
+    </p>
+    <h2>
+        Design Principles and Goals</h2>
+    <p>
+        This project is moving closer to the <a href="http://en.wikipedia.org/wiki/Model-view-controller">MVC
+            paradigm</a>. The View (UI) is definately separated from the Model and Control
+        elements. So if you find you're modifying the LRF data in the BBeBinder project
+        then you are probably working in the wrong assembly, and may need to be in BBeBLib.
+        BBeBLib is just a class library that does no UI at all.</p>
+    <p>
+        BBeBinder should be the only assembly that does anything Microsoft specific - it
+        has to because it uses <a href="http://en.wikipedia.org/wiki/MSHTML">MSHTML</a>.
+        The hope is that the other .Net programs can be run under <a href="http://en.wikipedia.org/wiki/Mono_%28software%29">
+            Mono</a> on other operating systems. Plug-ins are free to do whatever they want
+        in this regard.</p>
+    <h3>
+        Testing</h3>
+    <p>
+        We will be introducing unit tests fairly soon using NUnit. At the moment there is
+        one high level test (described below).</p>
+    <h2>
+        Required Development Tools</h2>
+    <p>
+        BBeB Binder is a Microsoft .Net 2.0 program. It is developed with Visual Studio
+        2005. At a minimum you will need VS2005.</p>
+    <p>
+        You can manually build the solution, but to do a full build you will also need the
+        <a href="http://msbuildtasks.tigris.org/">MSBuild Community Tasks</a>.</p>
+    <h2>
+        Building BBeB Binder</h2>
+    <p>
+        To manually build the solution open up src\BBeBinder.sln and building it in VS2005.</p>
+    <p>
+        To fully build this project you will need to do a command line build via MSBuild
+        as follows:</p>
+    <div class="code">
+        & msbuild</div>
+    <p>
+        msbuild is part of .Net 2.0, and is currently located at C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\MSBuild.exe.</p>
+    <p>
+        To create the release distribution (The ZIP file that contains the setup) then do
+        the following:</p>
+    <div class="code">
+        & msbuild /t:dist</div>
+    <h2>
+        Running Tests</h2>
+    <p>
+        BBeB Binder is still short on tests, but it does have one test where it converts
+        HelloWorld.txt into HelloWorld.lrf, and compares it (byte-for-byte) with a previously
+        created golden master. If the files differ at all then the test fails. This test
+        is run as part of a normal command-line build and if it fails then the build will
+        also fail.</p>
+    <p>
+        This is actually a very good test, and it's prevented a whole lot of bugs being
+        introduced during the course of development and refactoring. However, from time
+        to time a change will be made that legitimately changes the LRF output format. When
+        this occurs the right thing to do is to update the golden master. Take care to ensure
+        that your new golden master is <em>really</em> correct before doing this.</p>
+    <h2>
+        Changing Versions</h2>
+    <p>
+        The Version.txt file at the top level of the project contains the version number
+        that is substituted into every project. The "update-versions" target in BBeBinder.proj
+        makes this substitution. This works for all files with the exception of changing
+        the installer version in BBeBinderSetup.vdproj. There is an <a href="http://code.google.com/p/bbebinder/issues/detail?id=5&can=2&q=">
+            open issue</a> on this, but until it is resolved this needs to be done manually.</p>
+    <h2>
+        Before Committing Changes</h2>
+    <p>
+        So you've done some work on the code and you want to commit your changes. If you
+        are not a project developer then please submit a patch to one. If you <em>are</em>
+        a project developer then please do the following:</p>
+    <ol>
+        <li>Make sure your source is up to date.</li>
+        <li>Run msbuild /t:clean</li>
+        <li>Run msbuild /t:dist</li>
+        <li>Convert Complex.html to a LRF and look at that LRF in the Sony CONNECT Reader desktop
+            application.</li>
+        <li>Convert moby10b.txt to a LRF and look at that LRF in the Sony CONNECT Reader desktop
+            application.</li>
+    </ol>
+    <p>
+        Taking these steps will help ensure that you don't introduce new bugs into the code.</p>
+    <h2>
+        Release Plan</h2>
+    <p>
+        Here's the plan going forward.</p>
+    <h3>
+        Release 0.2</h3>
+    <ul>
+    <li><strong>
+        Simple Image Support</strong>:
+        Support for GIF/JPEG images. No resizing, centering, etc. (See <a href="http://code.google.com/p/bbebinder/issues/detail?id=2&can=2&q=">
+            enhancement #2</a>)</li>
+        <li><strong>
+        Simple Table of Contents</strong>: Convert H1/H2 elements into entries in
+            the table of contents. (See <a href="http://code.google.com/p/bbebinder/issues/detail?id=8&can=2&q=">
+                enhancement #8</a>)</li>
+        <li><strong>BBeB Reading</strong>: The ability to read in, modify, and write back out
+            a BBeB file.</li>
+        <li><strong>Web page reading</strong>: Opening pages from the Internet (using a URL).</li>
+    </ul>
+    <h3>
+        Release 0.3</h3>
+    <ul>
+        <li><strong>Intra Document Links</strong>: Support links within the documents. (See
+            <a href="http://code.google.com/p/bbebinder/issues/detail?id=15&can=2&q=">enhancement
+                #15</a>)</li>
+        <li><strong>Enhanced Chapter Start</strong>: Start each chapter on a new page. Make
+            it look better. (See <a href="http://code.google.com/p/bbebinder/issues/detail?id=14&can=2&q=">
+                enhancement #14</a>)</li>
+        <li><strong>Font Sizes</strong>: Support for different font sizes. (See <a href="http://code.google.com/p/bbebinder/issues/detail?id=9&can=2&q=">
+            enhancement #9</a>)</li>
+        <li><strong>Font Faces</strong>: Support different font faces. (See <a href="http://code.google.com/p/bbebinder/issues/detail?id=9&can=2&q=">
+            enhancement #9</a>)</li>
+        <li><strong>CSS Support</strong>: Support for cascading style sheets.<strong>Centered
+            Text</strong>: Centered text. (See <a href="http://code.google.com/p/bbebinder/issues/detail?id=13&can=2&q=">
+                enhancement #13</a>)</li>
+    </ul>
+    <h3>
+        Release 0.4</h3>
+    <ul>
+        <li><strong>Justified Text</strong>: Left, full, right.</li>
+        <li><strong>Blockquote</strong>: Support the &lt;blockquote&gt; tag. (See <a href="http://code.google.com/p/bbebinder/issues/detail?id=16&can=2&q=">
+            enhancement #16</a>)</li>
+        <li><strong>Horizontal lines</strong>: Support the &lt;hr&gt; tag. (See <a href="http://code.google.com/p/bbebinder/issues/detail?id=12&can=2&q=">
+            enhancement #12</a>)</li>
+        <li><strong>RTF Support</strong>: (See <a href="http://code.google.com/p/bbebinder/issues/detail?id=20&can=2&q=">
+            enhancement #20</a>)</li>
+    </ul>
+    <p>
+    </p>
+    <h3>
+        Release 0.5</h3>
+    <ul>
+        <li><strong>Enhanced Cover</strong>: Improve the appearance of the book's cover.</li>
+        <li><strong>Headers</strong>: Support for page headers.</li>
+        <li><strong>Footers</strong>: Support for page footers.</li>
+    </ul>
+    <h3>
+        Relase 0.6</h3>
+    <p>
+    </p>
+    <ul>
+        <li><strong>HTML Tables</strong>: Support for HTML tables. (See <a href="http://code.google.com/p/bbebinder/issues/detail?id=11&can=2&q=">
+            enhancement #11</a>)</li>
+        <li><strong>HTML Lists</strong>:&nbsp; (See <a href="http://code.google.com/p/bbebinder/issues/detail?id=10&can=2&q=">
+            enhancement #10</a>)</li>
+    </ul>
+    <h3>
+        Post 1.0 Features:</h3>
+    <ul>
+        <li><strong>Vector Graphics</strong>: Possibly SVG support?</li>
+    </ul>
+</body>
+</html>

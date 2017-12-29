@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>BBeB Binder Releae Notes</title>
+    <style type="text/css">
+<!--
+body {
+	background: #FFFFFF; 
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10pt;
+}
+a {
+	color: #666699;
+}
+li {
+	margin-top: 3;
+}
+h1 {
+	font-size: 18pt;
+}
+
+h2 {
+	font-size: 14pt;
+}
+
+h3 {
+	font-size: 12pt;
+}
+.code {
+	margin-left: 40px;
+	margin-right: 80px;
+	padding: 8px;
+	padding-bottom: 15px;
+	font:85% monospace;
+	border: 1pt solid #e6dfcf;
+	background-color: #f3f2eb;
+	color: black;
+}
+.standout {
+	margin-left: 2px;
+	margin-right: 2px;
+	padding: 8px;
+	border: 1pt solid #e6dfcf;
+	background-color: #f3f2eb;
+	color: maroon;
+}
+table {
+	font-family: Arial, Verdana, Helvetica; 
+	border-color: #000000;
+	border-collapse: collapse;
+	font-size: 9pt;
+}
+
+th {
+	color: white;
+	background-color: black;
+}
+
+td {
+	border: 1px solid #000000;
+}
+-->
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center">
+        BBeB Binder Release Notes</h1>
+    <h2>
+        Introduction</h2>
+    <p>
+        BBeB Binder is a program for converting text and HTML documents into unencrypted
+        Broadband eBook files - or BBeB files. These files are read by the Sony Reader (<a
+            href="http://www.sony.com/reader">PRS-500</a>).</p>
+    <div class="standout">
+        <strong>Note</strong>: BBeB Binder is currently a work-in-progress. There is still
+        plenty of HTML formatting that is not properly converted to the BBeB format.</div>
+    <h2>
+        Installation</h2>
+    <p>
+        To install BBeB Binder <span style="text-decoration: underline">run setup.exe</span>
+        which is beside BBeBinderSetup.msi. BBeB Binder is a Microsoft .Net 2.0 application,
+        and setup.exe will download and install the .Net 2.0 runtime if it detects that
+        it is not already installed.</p>
+    <div class="standout">
+        <strong>Note</strong>: If you run BBeB Binder the first time and a "filenotfound"
+        exception is displayed then you need to run the vs_piaredist.exe program which accompanies
+        this setup program. This will hopefully be integrated into a future release of the
+        BBeB Binder installer.</div>
+    <br />
+    <h2>
+        Using BBeB Binder</h2>
+    <p>
+        Creating an eBook with BBeB Binder is simple. Just do the following:</p>
+    <ol>
+        <li>Open the text or HTML page using the File/Open menu item.</li>
+        <li>Make any changes to the eBook properties if necessary.</li>
+        <li>Make any changes to the HTML document (if necessary).</li>
+        <li>Select the File/Convert menu item and specify the destination file.</li>
+    </ol>
+    <p>
+        This will produce a BBeB file (*.lrf) in the directory of your choosing. If you
+        have the Sony CONNECT reader installed then double clicking on your newly created
+        file should open and display that new eBook. You can then copy this new eBook to
+        your reader as you would any other book.</p>
+    <h2>
+        Releases</h2>
+    <h3>
+        0.2.0</h3>
+    <ul>
+        <li>Added support for creating images in BBeB files.</li>
+        <li>Added support for reading existing BBeB files.</li>
+        <li>Can now open HTML pages from the Internet instead of just local HTML files.</li>
+        <li>Now create a table of contents automatically based on the HTML heading elements:
+            i.e. H1, H2, etc.</li>
+        <li>Create a very simple book cover.</li>
+        <li>Added a character substitution file that can be used to specify characters to use
+            when none exists in the Sony Reader.</li>
+        <li>H1 and H2 elements now cause a new page to be created.</li>
+    </ul>
+    <h3>
+        0.1.5</h3>
+    <ul>
+        <li>First releases. Supported simple text creation</li>
+    </ul>
+</body>
+</html>

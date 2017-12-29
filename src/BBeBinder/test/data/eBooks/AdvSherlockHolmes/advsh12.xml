@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<BindingParams>
+  <IconFile>advsh12.gif</IconFile>
+  <InputFile>advsh12.txt</InputFile>
+  <OutputFile>advsh12.lrf</OutputFile>
+  <Info version="1.0" >
+    <BookInfo>
+      <Title>The Adventures of Sherlock Holmes</Title>
+      <Author>Sir Arthur Conan Doyle</Author>
+      <BookID>123</BookID>
+      <Publisher>Project Gutenberg</Publisher>
+      <Label>The Adventures of Sherlock Holmes</Label>
+      <Category>Fiction</Category>
+      <Classification>Fiction</Classification>
+      <FreeText>Converted from advsh12.txt by BBeBinder.</FreeText>
+    </BookInfo>
+    <DocInfo>
+      <Language>en</Language>
+      <Creator>Chris Mumford</Creator>
+      <CreationDate>2006-12-20</CreationDate>
+      <Producer>Legally Blind Book Binder 2.0.1</Producer>
+    </DocInfo>
+  </Info>
+</BindingParams>
