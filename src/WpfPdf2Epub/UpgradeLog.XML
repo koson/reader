@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="WpfPdf2Epub">
+</Property><Property Name="Solution File" Value="D:\workspace\microsoft\project\WpfPdf2Epub\WpfPdf2Epub.sln">
+</Property><Property Name="Date" Value="2010年8月19日">
+</Property><Property Name="Time" Value="16:58">
+</Property></Properties><Event ErrorLevel="0" Project="WpfPdf2Epub" Source="WpfPdf2Epub\WpfPdf2Epub.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="WpfPdf2Epub" Source="WpfPdf2Epub\WpfPdf2Epub.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="WpfPdf2Epub.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="WpfPdf2Epub.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="WpfPdf2Epub" Source="WpfPdf2Epub\WpfPdf2Epub.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
