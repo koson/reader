@@ -1,0 +1,14 @@
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\bin\Debug\PictureViewer.exe
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\bin\Debug\PictureViewer.pdb
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\obj\Debug\ResolveAssemblyReference.cache
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\obj\Debug\Window1.g.cs
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\obj\Debug\App.g.cs
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\obj\Debug\PictureViewer_MarkupCompile.cache
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\obj\Debug\PictureViewer_MarkupCompile.lref
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\obj\Debug\Window1.baml
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\obj\Debug\PictureViewer.g.resources
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\obj\Debug\PictureViewer.Properties.Resources.resources
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\obj\Debug\ResGen.read.1.tlog
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\obj\Debug\ResGen.write.1.tlog
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\obj\Debug\PictureViewer.exe
+D:\workspace\project\reader\project\PictureViewer\PictureViewer\obj\Debug\PictureViewer.pdb
